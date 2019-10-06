@@ -38,6 +38,18 @@ void print_word(wordbook *array)
 	printf("|====================+====================+====================|\n");
 }
 
+int write_mark(int amount, int correct)
+{
+	double rating = (double)correct / (double)amount;
+
+	if (rating > 0.00 && rating <= 0.35) return 2;
+	if (rating > 0.35 && rating <= 0.60) return 3;
+	if (rating > 0.60 && rating <= 0.85) return 4;
+	if (rating > 0.85 && rating <= 1.00) return 5;
+
+	return 0;
+}
+
 int main()
 {
 	wordbook array[VERBS_NUMBER];
