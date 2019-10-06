@@ -1,3 +1,3 @@
 # Course work
 # Irregular verbs
-# (Link on statusbar)
+[![Build Status](https://travis-ci.org/nigmatullin-trpo/irregular-verbs.svg?branch=master)](https://travis-ci.org/nigmatullin-trpo/irregular-verbs)
