@@ -50,6 +50,13 @@ int write_mark(int amount, int correct)
 	return 0;
 }
 
+void print_mark(int amount, int correct, int rating)
+{
+	printf("|==============================================================|\n");
+	printf("|             Correct: %1d/%1d      Rating: %1d                |\n", correct, amount, rating);
+	printf("|==============================================================|\n");
+}
+
 int main()
 {
 	wordbook array[VERBS_NUMBER];
