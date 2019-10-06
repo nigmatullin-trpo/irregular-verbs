@@ -120,10 +120,45 @@ void print_task(wordbook *array)
 	print_mark(amount, correct, rating);
 }
 
+void print_menu(wordbook *array)
+{
+	char command;
+
+	while (1) 
+	{
+		printf("|==============================================================|\n");
+		printf("| Enter '1' to print list of irregular verbs                   |\n");
+		printf("| Enter '2' to test your knowledge of irregular verbs          |\n");
+		printf("| Enter '3' to exit                                            |\n");
+		printf("|==============================================================|\n");
+
+		command = getchar();
+
+		switch (command) 
+		{
+			case '1':
+				print_word(array);
+				break;
+
+			case '2':
+				print_task(array);
+				break;
+
+			case '3':
+				return;
+
+			default :
+				break;
+		}
+	}
+}
+
 int main()
 {
 	wordbook array[VERBS_NUMBER];
+
 	write_word(DICTIONARY_PATH, array);
+	print_menu(array);
 
 	return 0;
 }
