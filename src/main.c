@@ -58,6 +58,17 @@ void print_mark(int amount, int correct, int rating)
 	printf("|==============================================================|\n");
 }
 
+void clean_buff(void)
+{
+    int temp;
+
+    do 
+    {
+        temp = getchar();
+    } 
+    while (temp != '\n' && temp != EOF);
+}
+
 void print_task(wordbook *array)
 {
 	char answer[32];
@@ -86,6 +97,7 @@ void print_task(wordbook *array)
 			case 0:
 				printf("| %18s | %18s |                    | \n", array[word].time_1st, array[word].time_2nd);
 				scanf("%32s", answer);
+				clean_buff();
 				if (strcmp(array[word].time_3rd, answer) == 0) 
 				{
 					printf("This is the correct answer! \n");
@@ -100,6 +112,7 @@ void print_task(wordbook *array)
 			case 1:
 				printf("| %18s |                    | %18s | \n", array[word].time_1st, array[word].time_3rd);
 				scanf("%32s", answer);
+				clean_buff();
 				if (strcmp(array[word].time_2nd, answer) == 0) 
 				{
 					printf("This is the correct answer! \n");
@@ -133,6 +146,7 @@ void print_menu(wordbook *array)
 		printf("|==============================================================|\n");
 
 		command = getchar();
+		clean_buff();
 
 		switch (command) 
 		{
