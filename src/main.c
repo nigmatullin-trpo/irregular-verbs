@@ -3,6 +3,7 @@
 #include <string.h>
 
 #define VERBS_NUMBER 130
+#define TASK_NUMBER 5
 #define DICTIONARY_PATH "src/wordbook"
 
 typedef struct 
@@ -55,6 +56,68 @@ void print_mark(int amount, int correct, int rating)
 	printf("|==============================================================|\n");
 	printf("|             Correct: %1d/%1d      Rating: %1d                |\n", correct, amount, rating);
 	printf("|==============================================================|\n");
+}
+
+void print_task(wordbook *array)
+{
+	char answer[32];
+
+	int time	= 0;
+	int word	= 0;
+	int amount  = TASK_NUMBER;
+	int rating  = 0;
+	int counter = 0;
+	int correct = 0;
+
+	printf("|==============================================================|\n");
+	printf("|          Fill in the blanks with the correct form            |\n");
+	printf("|  If it has several forms, list them via '/' without spaces   |\n");
+	printf("|             For example 'example 1 / example 2'              |\n");
+	printf("|     Infinitive     |     Past Simple    |   Past Participle  |\n");
+	printf("|==============================================================|\n");
+
+	for (counter = 0; counter < amount; counter++) 
+	{
+		time = (rand() % VERBS_NUMBER) % 2;
+		word = (rand() % VERBS_NUMBER);
+
+		switch (time) 
+		{
+			case 0:
+				printf("| %18s | %18s |                    | \n", array[word].time_1st, array[word].time_2nd);
+				scanf("%32s", answer);
+				if (strcmp(array[word].time_3rd, answer) == 0) 
+				{
+					printf("This is the correct answer! \n");
+					correct++;
+				}
+				else 
+				{
+					printf("This is not the correct answer! Correct form is: %-14s| \n", array[word].time_3rd);
+				}
+				break;
+
+			case 1:
+				printf("| %18s |                    | %18s | \n", array[word].time_1st, array[word].time_3rd);
+				scanf("%32s", answer);
+				if (strcmp(array[word].time_2nd, answer) == 0) 
+				{
+					printf("This is the correct answer! \n");
+					correct++;
+				}
+				else 
+				{
+					printf("This is not the correct answer! Correct form is: %-14s| \n", array[word].time_2nd);
+				}
+				break;
+
+			default:
+				break;
+		}
+	}
+
+	rating = write_mark(amount, correct);
+	print_mark(amount, correct, rating);
 }
 
 int main()
